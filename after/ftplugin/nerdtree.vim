@@ -1,1 +1,1 @@
-setlocal statusline=%<%{zeroline#nerdtree#Status()}
+setlocal statusline=%<[NERDTree]%(\ %{exists('b:NERDTree')?fnamemodify(b:NERDTree.root.path.str(),':p:~:.:h'):''}%)
