@@ -17,7 +17,7 @@ let g:NERDTreeStatusline = -1
 let g:ZoomWin_funcref = function('zeroline#zoomwin#Hook')
 
 " Command-line Window
-augroup VimSimpleStatusline
+augroup VimZerolineAutocmds
     autocmd!
     autocmd CmdwinEnter * set filetype=cmdline syntax=vim
 augroup END
