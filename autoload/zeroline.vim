@@ -2,6 +2,10 @@ function! s:ZoomState() abort
     return get(b:, 'zeroline_zoomstate', 0) ? '[Z]' : ''
 endfunction
 
+function! s:Shiftwidth() abort
+    return exists('*shiftwidth') ? shiftwidth() : &shiftwidth
+endfunction
+
 function! s:Indicators() abort
     let l:parts = []
 
@@ -13,7 +17,7 @@ function! s:Indicators() abort
         call add(l:parts, '[' .. toupper(tr(&spelllang, ',', '/')) .. ']')
     endif
 
-    call add(l:parts, '[' .. (&expandtab ? 'S' : 'T') .. ':' .. &shiftwidth .. ']')
+    call add(l:parts, &expandtab ? '[S:' .. s:Shiftwidth() .. ']' : '[T:' .. &tabstop .. ']')
 
     let l:encoding = empty(&fileencoding) ? &encoding : &fileencoding
     if !empty(l:encoding) && l:encoding !=# 'utf-8'
