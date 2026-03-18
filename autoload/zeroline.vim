@@ -1,8 +1,8 @@
-function! zeroline#ZoomState() abort
+function! s:ZoomState() abort
     return get(b:, 'zeroline_zoomstate', 0) ? '[Z]' : ''
 endfunction
 
-function! zeroline#Indicators() abort
+function! s:Indicators() abort
     let l:parts = []
 
     if stridx(&clipboard, 'unnamed') > -1
@@ -32,7 +32,9 @@ endfunction
 
 function! zeroline#Statusline() abort
     if g:statusline_winid == win_getid(winnr())
-        return '%<%f%{zeroline#ZoomState()} %w%m%r%=%{zeroline#Indicators()}%y'
+        let l:zoom = s:ZoomState()
+        let l:indicators = s:Indicators()
+        return '%<%f%' .. l:zoom .. ' %w%m%r%=' .. l:indicators .. '%y'
     else
         return '%<%f %m%r'
     endif
