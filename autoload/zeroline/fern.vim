@@ -1,18 +1,16 @@
 function! zeroline#fern#Status() abort
-    let l:mode = 'Fern'
-
     let l:data = matchlist(expand('%'), '^fern://\(.\+\)/file://\(.\+\)\$')
 
-    if len(l:data)
-        if stridx(get(l:data, 1, ''), 'drawer') > -1
-            let l:mode = 'Drawer'
-        endif
-
-        let l:folder = substitute(get(data, 2, ''), ';\?\(#.\+\)\?\$\?$', '', '')
-        let l:folder = fnamemodify(l:folder, ':p:~:.:h')
-
-        return '[' .. l:mode .. ']' .. ' ' .. l:folder
+    if empty(data)
+        return '[Fern]'
     endif
 
-    return '[' .. l:mode .. ']'
+    let l:name = get(l:data, 1, '')
+    let l:name = stridx(l:name, 'drawer') > -1 ? 'Drawer' : 'Fern'
+
+    let l:folder = get(data, 2, '')
+    let l:folder = substitute(l:folder, ';\?\(#.\+\)\?\$\?$', '', '')
+    let l:folder = fnamemodify(l:folder, ':p:~:.:h')
+
+    return '[' .. l:name .. ']' .. ' ' .. l:folder
 endfunction

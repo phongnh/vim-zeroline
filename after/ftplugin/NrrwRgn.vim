@@ -1,1 +1,1 @@
-setlocal statusline=%!g:zeroline#NrrwRgn#Status()
+setlocal statusline=%<%{zeroline#nrrwrgn#Status()}
