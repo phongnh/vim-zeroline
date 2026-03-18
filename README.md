@@ -1,2 +1,3 @@
-# vim-simple-status
+# vim-zeroline
+
 A very simple Vim statusline
