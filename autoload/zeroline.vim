@@ -13,6 +13,10 @@ function! s:Indicators() abort
         call add(l:parts, '[C]')
     endif
 
+    if &paste
+        call add(l:parts, '[P]')
+    endif
+
     if &spell
         call add(l:parts, '[' .. toupper(tr(&spelllang, ',', '/')) .. ']')
     endif
