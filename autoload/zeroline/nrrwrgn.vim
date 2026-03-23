@@ -12,20 +12,16 @@ function! s:GetMode() abort
     return '[' .. l:prefix .. l:name .. ']' .. l:visual
 endfunction
 
-function! s:GetLineRange() abort
-    let l:status = nrrwrgn#NrrwRgnStatus()
-    if !empty(l:status) && !l:status.multi
-        return printf(' [%d-%d]', l:status.start[1], l:status.end[1])
-    endif
-    return ''
-endfunction
-
 function! s:GetBufName() abort
-    let l:fullname = get(nrrwrgn#NrrwRgnStatus(), 'fullname', '')
-    let l:bufname = !empty(l:fullname) ? l:fullname : bufname(get(b:, 'orig_buf', '%'))
-    return fnamemodify(l:bufname, ':~:.')
+    let l:status = nrrwrgn#NrrwRgnStatus()
+    let l:bufname = !empty(status) ? l:status.fullname : bufname(get(b:, 'orig_buf', '%'))
+    let l:bufname = fnamemodify(l:bufname, ':~:.')
+    if !empty(l:status) && !l:status.multi
+        let l:bufname = l:bufname .. printf(' [%d-%d]', l:status.start[1], l:status.end[1])
+    endif
+    return l:bufname
 endfunction
 
 function! zeroline#nrrwrgn#Status() abort
-    return s:GetMode() .. ' ' .. s:GetBufName() .. s:GetLineRange()
+    return s:GetMode() .. ' ' .. s:GetBufName()
 endfunction
