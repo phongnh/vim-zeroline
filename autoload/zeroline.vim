@@ -1,5 +1,5 @@
 function! s:ZoomState() abort
-    return get(b:, 'zeroline_zoomstate', 0) ? '[Z]' : ''
+    return get(g:, 'zeroline_zoomstate', 0) ? '[Z]' : ''
 endfunction
 
 function! s:Shiftwidth() abort
