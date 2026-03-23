@@ -8,7 +8,7 @@ function! s:GetName() abort
     return substitute(l:name, '__', '#', '')
 endfunction
 
-function! zero#nrrwrgn#Status() abort
+function! zeroline#nrrwrgn#Status() abort
     let l:name = s:GetName()
     let l:buffer = ''
 
