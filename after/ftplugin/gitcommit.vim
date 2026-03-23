@@ -1,1 +1,1 @@
-setlocal statusline=%<[Commit\ Message]%(\ [%{&spell?toupper(tr(&spelllang,',','/')):''}]%)%=%4l:%-3c\ %P
+setlocal statusline=%<[Commit\ Message]%=%4l:%-3c\ %P%(\ [%{&spell?toupper(tr(&spelllang,',','/')):''}]%)

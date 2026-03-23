@@ -16,6 +16,15 @@ function! s:Indicators() abort
     if &paste
         call add(l:parts, '[P]')
     endif
+    if len(l:parts) > 0
+        call add(l:parts, ' ')
+    endif
+
+    return join(l:parts, '')
+endfunction
+
+function! s:BufferIndicators() abort
+    let l:parts = []
 
     if &spell
         call add(l:parts, '[' .. toupper(tr(&spelllang, ',', '/')) .. ']')
@@ -39,11 +48,13 @@ function! s:Indicators() abort
 endfunction
 
 function! zeroline#Statusline() abort
-    if g:statusline_winid == win_getid(winnr())
+    let l:current_winid = get(g:, 'statusline_winid', get(g:, 'actual_curwin', -1))
+    if l:current_winid == win_getid(winnr())
         let l:zoom = s:ZoomState()
         let l:indicators = s:Indicators()
-        return '%<%f%' .. l:zoom .. ' %w%m%r%=' .. l:indicators .. '%y'
+        let l:buffer_indicators = s:BufferIndicators()
+        return l:indicators .. '%<%f' .. l:zoom .. '%w%m%r %= ' .. l:buffer_indicators .. '%y'
     else
-        return '%<%f %m%r'
+        return '%<%f%m%r'
     endif
 endfunction
