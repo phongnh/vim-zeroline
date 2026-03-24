@@ -49,7 +49,7 @@ function! s:BufferIndicators() abort
 endfunction
 
 function! zeroline#Statusline() abort
-    let l:current_winid = get(g:, 'statusline_winid', get(g:, 'actual_curwin', -1)->str2nr())
+    let l:current_winid = get(g:, 'statusline_winid', get(g:, 'actual_curwin', '-1')->str2nr())
     if l:current_winid == win_getid(winnr())
         return s:Indicators() .. '%<%f' .. s:ZoomState() .. '%w%m%r %= ' .. s:BufferIndicators() .. '%y'
     else
