@@ -1,4 +1,4 @@
-let s:visual_mode_indicators = { '': '', 'v': ' [C]', 'V': '', '': ' [B]', '\<C-V>': ' [B]' }
+let s:VISUAL_MODE_INDICATORS = { '': '', 'v': ' [C]', 'V': '', "\<C-V>": ' [B]' }
 
 function! s:GetMode() abort
     let l:name = exists('b:nrrw_instn') ? 'NrrwRgn#' .. b:nrrw_instn : 'NrrwRgn'
@@ -7,7 +7,7 @@ function! s:GetMode() abort
     let l:status = nrrwrgn#NrrwRgnStatus()
     if !empty(l:status)
         let l:prefix = l:status.multi ? 'Multi' : ''
-        let l:visual = s:visual_mode_indicators[l:status.visual]
+        let l:visual = s:VISUAL_MODE_INDICATORS[l:status.visual]
     endif
     return '[' .. l:prefix .. l:name .. ']' .. l:visual
 endfunction

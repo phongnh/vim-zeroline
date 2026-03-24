@@ -16,6 +16,7 @@ function! s:Indicators() abort
     if &paste
         call add(l:parts, '[P]')
     endif
+
     if len(l:parts) > 0
         call add(l:parts, ' ')
     endif
@@ -32,7 +33,7 @@ function! s:BufferIndicators() abort
 
     call add(l:parts, &expandtab ? '[S:' .. s:Shiftwidth() .. ']' : '[T:' .. &tabstop .. ']')
 
-    let l:encoding = empty(&fileencoding) ? &encoding : &fileencoding
+    let l:encoding = !empty(&fileencoding) ? &fileencoding : &encoding
     if !empty(l:encoding) && l:encoding !=# 'utf-8'
         call add(l:parts, '[' .. l:encoding .. ']')
     endif
@@ -48,7 +49,7 @@ function! s:BufferIndicators() abort
 endfunction
 
 function! zeroline#Statusline() abort
-    let l:current_winid = get(g:, 'statusline_winid', get(g:, 'actual_curwin', -1))
+    let l:current_winid = get(g:, 'statusline_winid', get(g:, 'actual_curwin', -1))->str2nr()
     if l:current_winid == win_getid(winnr())
         let l:zoom = s:ZoomState()
         let l:indicators = s:Indicators()
