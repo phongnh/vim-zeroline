@@ -24,11 +24,17 @@ function! s:Indicators() abort
     return join(l:parts, '')
 endfunction
 
+let s:spelllang_maps = { 'en_us': 'US', 'en_gb': 'GB' }
+
+function! zeroline#Spelllang() abort
+    return split(&spelllang, ',')->map('"[" .. get(s:spelllang_maps, v:val, toupper(v:val)) .. "]"')->join('')
+endfunction
+
 function! s:BufferIndicators() abort
     let l:parts = []
 
     if &spell
-        call add(l:parts, '[' .. toupper(tr(&spelllang, ',', '/')) .. ']')
+        call add(l:parts, zeroline#Spelllang())
     endif
 
     call add(l:parts, &expandtab ? '[S:' .. s:Shiftwidth() .. ']' : '[T:' .. &tabstop .. ']')
