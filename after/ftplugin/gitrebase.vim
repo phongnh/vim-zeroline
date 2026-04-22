@@ -1,1 +1,1 @@
-setlocal statusline=%<[Git\ Rebase]%=%4l:%-3c\ %P%(\ %{&spell?zeroline#Spelllang():''}%)
+setlocal statusline=%<[Git\ Rebase]%=%(%{&spell?zeroline#Spelllang():''}\ %)%4l:%-3c\ %P
