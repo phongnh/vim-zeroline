@@ -1,1 +1,1 @@
-setlocal statusline=%<[Git]%(\ %{expand('%:t')}%)%=%4l:%-3c\ %P
+setlocal statusline=%<[Git]%(\ %{zeroline#git#Status()}%)%=%4l:%-3c\ %P
