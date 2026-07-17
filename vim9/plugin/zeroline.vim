@@ -18,6 +18,7 @@ g:NERDTreeStatusline = -1
 augroup VimZerolineAutocmds
     autocmd!
     autocmd CmdwinEnter * set filetype=cmdline syntax=vim
+    autocmd User FugitiveChanged zeroline#fugitive#FugitiveChanged()
 augroup END
 
 # For statusline and tabline expressions, use legacy autoload function syntax

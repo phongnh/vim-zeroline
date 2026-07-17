@@ -1,4 +1,4 @@
-if has('vim9script') || exists('g:loaded_vim_zeroline') || v:version < 700
+if exists('g:loaded_vim_zeroline') || v:version < 700
     finish
 endif
 
@@ -20,6 +20,7 @@ let g:ZoomWin_funcref = function('zeroline#zoomwin#Hook')
 augroup VimZerolineAutocmds
     autocmd!
     autocmd CmdwinEnter * set filetype=cmdline syntax=vim
+    autocmd User FugitiveChanged call zeroline#fugitive#FugitiveChanged()
 augroup END
 
 set statusline=%!zeroline#Statusline()
