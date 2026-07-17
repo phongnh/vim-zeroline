@@ -1,8 +1,8 @@
-if exists('g:loaded_vim_zeroline') || !has('vim9script') || v:version < 900
+vim9script
+
+if exists('g:loaded_vim_zeroline')
     finish
 endif
-
-vim9script
 
 g:loaded_vim_zeroline = true
 
