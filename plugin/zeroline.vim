@@ -20,7 +20,6 @@ let g:ZoomWin_funcref = function('zeroline#zoomwin#Hook')
 augroup VimZerolineAutocmds
     autocmd!
     autocmd CmdwinEnter * set filetype=cmdline syntax=vim
-    autocmd User FugitiveChanged call zeroline#fugitive#FugitiveChanged()
 augroup END
 
 set statusline=%!zeroline#Statusline()

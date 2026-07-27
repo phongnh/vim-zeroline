@@ -11,15 +11,3 @@ export def Status(): string
     endif
     return ''
 enddef
-
-export def FugitiveChanged()
-    if !exists('g:_fugitive_last_job')
-        return
-    endif
-
-    const bufnr = get(g:_fugitive_last_job, 'capture_bufnr', -1)
-    if bufnr > 0
-        const cmd = join(extendnew(g:_fugitive_last_job.git, g:_fugitive_last_job.args), ' ')
-        setbufvar(bufnr, 'fugitive_git_command', cmd)
-    endif
-enddef
